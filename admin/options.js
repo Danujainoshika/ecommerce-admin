@@ -21,7 +21,7 @@ const adminOptions = {
           password: {
             isVisible: {
               list: false,
-              edit: false,
+              edit: true,
               show: false,
               filter: false,
             },
