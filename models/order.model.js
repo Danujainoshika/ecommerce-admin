@@ -4,7 +4,8 @@ import sequelize from "../config/db.js";
 const Order = sequelize.define("Order", {
     totalAmount : {
         type : DataTypes.FLOAT,
-        allowNull : false
+        allowNull : false,
+        validate : {min : 0}
     },
     status : {
         type : DataTypes.ENUM("pending", "completed", "cancelled"),
