@@ -5,7 +5,8 @@ const setting  = sequelize.define("Setting", {
         key : {
             type : DataTypes.STRING,
             allowNull : false,
-            unique : true
+            unique : true,
+            validate : {notEmpty : true}
         },
         value : {  
             type : DataTypes.STRING,
