@@ -9,6 +9,7 @@ AdminJS.registerAdapter(AdminJSSequelize);
 
 const admin = new AdminJS(adminOptions)
 
+
 export const adminRouter = AdminJSExpress.buildAuthenticatedRouter(admin,{
     authenticate: async (email, password) => {
         try {

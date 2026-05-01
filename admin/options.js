@@ -7,12 +7,10 @@ import {
   setting,
 } from "../models/index.js";
 
-
 const isAdmin = ({ currentAdmin }) => currentAdmin?.role === "admin";
 
 const adminOptions = {
   resources: [
-    
     {
       resource: User,
       options: {
@@ -21,9 +19,9 @@ const adminOptions = {
           password: {
             isVisible: {
               list: false,
-              edit: true,
               show: false,
               filter: false,
+              edit: true, // allow input
             },
           },
         },
@@ -36,7 +34,6 @@ const adminOptions = {
       },
     },
 
-  
     {
       resource: setting,
       options: {
@@ -63,7 +60,6 @@ const adminOptions = {
       },
     },
 
-
     {
       resource: Product,
       options: {
@@ -77,11 +73,20 @@ const adminOptions = {
       },
     },
 
-
     {
       resource: Order,
       options: {
         navigation: "Shop",
+        properties: {
+          totalAmount: {
+            isVisible: {
+              list: true,
+              show: true,
+              edit: false, 
+              filter: false,
+            },
+          },
+        },
         actions: {
           list: {
             isAccessible: true,
@@ -101,21 +106,27 @@ const adminOptions = {
             },
           },
 
+          new: { isAccessible: isAdmin },
+          edit: { isAccessible: isAdmin },
           delete: { isAccessible: isAdmin },
         },
       },
     },
 
-   
     {
       resource: Order_Item,
       options: {
         navigation: "Shop",
+        actions: {
+          list: { isAccessible: isAdmin },
+          new: { isAccessible: isAdmin },
+          edit: { isAccessible: isAdmin },
+          delete: { isAccessible: isAdmin },
+        },
       },
     },
   ],
 
-  
   dashboard: {
     handler: async () => {
       try {
